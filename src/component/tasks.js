@@ -2,19 +2,36 @@ import React, { useState } from 'react';
 
 
 
-const AddTask = ({getTask}) =>{
-    const [value, SetValue] = useState("");
 
-    return(
-        <form onSubmit={(e) =>{
+const AddTask = ({getTask}) =>{
+    const [value, setValue] = useState("");
+    const [tasks, setTasks] = useState([]);
+
+const AddValue = e =>{
+    setValue(e.target.value);
+};
+const sendValue = () =>{
+    setTasks(value);
+}
+    return( 
+        <div>
+          <form onSubmit={(e) =>{
             e.preventDefault();
             getTask = {value};
         }}>
-            <input type="text" placeholder="Your Task here" defaultValue={value}></input>
+            <input placeholder="Your Task here" onChange={AddValue}></input>
             <br/>
             <br/>
-            <button type="submit" onClick={()=>SetValue(value)}>Add</button>
-        </form>
+            <button type="submit" onClick={sendValue}>Add</button>
+        </form>  
+        <div>
+            {tasks.map((e)=>(
+                <ul key={e.id}>
+                    <li>{e.tasks}</li>
+                </ul>
+            ))}
+        </div>
+        </div>
     );
 };
 

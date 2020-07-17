@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <h1>TODO List</h1>
-      <AddTask getTask={console.log()}/>
+      <AddTask/>
     </div>
   );
 }
